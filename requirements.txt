@@ -1,0 +1,9 @@
+torch>=2.0
+transformers==4.51.3
+sentencepiece
+spacy>=3.7
+scikit-learn
+networkx>=3.0
+pyvis>=0.3
+neo4j>=5.0
+tqdm
