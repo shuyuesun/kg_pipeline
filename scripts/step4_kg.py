@@ -77,7 +77,7 @@ def neo4j_queries():
     driver = GraphDatabase.driver("bolt://127.0.0.1:7687", auth=None)
     out = []
     qs = [
-        ("孙少平的直接关系", "MATCH (a:Entity {name:'孙少平'})-[r:REL]->(b) RETURN count(b) AS c"),
+        ("孙少平的直接关系", "MATCH (a:Entity {name:'孙少平'})-[r:REL]->(b) RETURN count(DISTINCT b) AS c"),
         ("田福军→田晓霞→孙少平 两跳路径", "MATCH p=(a:Entity {name:'田福军'})-[:REL*1..2]->(b:Entity {name:'孙少平'}) RETURN count(p) AS c"),
         ("全图边数统计", "MATCH ()-[r:REL]->() RETURN count(r) AS c"),
     ]

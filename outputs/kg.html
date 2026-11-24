@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 760px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#e15759", "font": {"color": "#222222"}, "id": "\u5b59\u5c11\u5e73", "label": "\u5b59\u5c11\u5e73", "shape": "dot", "size": 16, "title": "\u5b59\u5c11\u5e73 (Person)"}, {"color": "#4e79a7", "font": {"color": "#222222"}, "id": "\u539f\u897f\u53bf\u9ad8\u4e2d", "label": "\u539f\u897f\u53bf\u9ad8\u4e2d", "shape": "dot", "size": 16, "title": "\u539f\u897f\u53bf\u9ad8\u4e2d (Organization)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u4faf\u7389\u82f1", "label": "\u4faf\u7389\u82f1", "shape": "dot", "size": 16, "title": "\u4faf\u7389\u82f1 (Person)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u90dd\u7ea2\u6885", "label": "\u90dd\u7ea2\u6885", "shape": "dot", "size": 16, "title": "\u90dd\u7ea2\u6885 (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5b59\u5c11\u5e73\u4e0e\u90dd\u7ea2\u6885\u7684\u604b\u60c5", "label": "\u5b59\u5c11\u5e73\u4e0e\u90dd\u7ea2\u6885\u7684\u604b\u60c5", "shape": "dot", "size": 16, "title": "\u5b59\u5c11\u5e73\u4e0e\u90dd\u7ea2\u6885\u7684\u604b\u60c5 (Concept)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u987e\u517b\u6c11", "label": "\u987e\u517b\u6c11", "shape": "dot", "size": 16, "title": "\u987e\u517b\u6c11 (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u6559\u5e08", "label": "\u6559\u5e08", "shape": "dot", "size": 16, "title": "\u6559\u5e08 (Concept)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u7530\u6653\u971e", "label": "\u7530\u6653\u971e", "shape": "dot", "size": 16, "title": "\u7530\u6653\u971e (Person)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u7530\u798f\u519b", "label": "\u7530\u798f\u519b", "shape": "dot", "size": 16, "title": "\u7530\u798f\u519b (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u53bf\u9769\u59d4\u526f\u4e3b\u4efb", "label": "\u53bf\u9769\u59d4\u526f\u4e3b\u4efb", "shape": "dot", "size": 16, "title": "\u53bf\u9769\u59d4\u526f\u4e3b\u4efb (Concept)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u5b59\u5c11\u5b89", "label": "\u5b59\u5c11\u5b89", "shape": "dot", "size": 16, "title": "\u5b59\u5c11\u5b89 (Person)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u7530\u6da6\u53f6", "label": "\u7530\u6da6\u53f6", "shape": "dot", "size": 16, "title": "\u7530\u6da6\u53f6 (Person)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u7530\u798f\u5802", "label": "\u7530\u798f\u5802", "shape": "dot", "size": 16, "title": "\u7530\u798f\u5802 (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u6751\u652f\u4e66", "label": "\u6751\u652f\u4e66", "shape": "dot", "size": 16, "title": "\u6751\u652f\u4e66 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u53bf\u57ce\u6559\u5e08", "label": "\u53bf\u57ce\u6559\u5e08", "shape": "dot", "size": 16, "title": "\u53bf\u57ce\u6559\u5e08 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5b59\u5c11\u5b89\u4e0e\u7530\u6da6\u53f6\u7684\u5a5a\u4e8b", "label": "\u5b59\u5c11\u5b89\u4e0e\u7530\u6da6\u53f6\u7684\u5a5a\u4e8b", "shape": "dot", "size": 16, "title": "\u5b59\u5c11\u5b89\u4e0e\u7530\u6da6\u53f6\u7684\u5a5a\u4e8b (Concept)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u79c0\u83b2", "label": "\u79c0\u83b2", "shape": "dot", "size": 16, "title": "\u79c0\u83b2 (Person)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u674e\u5411\u524d", "label": "\u674e\u5411\u524d", "shape": "dot", "size": 16, "title": "\u674e\u5411\u524d (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5077\u6316\u6cb3\u575d\u4e0e\u4e0a\u6e38\u62a2\u6c34", "label": "\u5077\u6316\u6cb3\u575d\u4e0e\u4e0a\u6e38\u62a2\u6c34", "shape": "dot", "size": 16, "title": "\u5077\u6316\u6cb3\u575d\u4e0e\u4e0a\u6e38\u62a2\u6c34 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u70b8\u5c71\u4fee\u7530", "label": "\u70b8\u5c71\u4fee\u7530", "shape": "dot", "size": 16, "title": "\u70b8\u5c71\u4fee\u7530 (Concept)"}, {"color": "#f28e2b", "font": {"color": "#222222"}, "id": "\u519c\u4e1a\u5b66\u5927\u5be8", "label": "\u519c\u4e1a\u5b66\u5927\u5be8", "shape": "dot", "size": 16, "title": "\u519c\u4e1a\u5b66\u5927\u5be8 (Event)"}, {"color": "#f28e2b", "font": {"color": "#222222"}, "id": "\u652f\u90e8\u4f1a", "label": "\u652f\u90e8\u4f1a", "shape": "dot", "size": 16, "title": "\u652f\u90e8\u4f1a (Event)"}, {"color": "#f28e2b", "font": {"color": "#222222"}, "id": "\u8d23\u4efb\u5236", "label": "\u8d23\u4efb\u5236", "shape": "dot", "size": 16, "title": "\u8d23\u4efb\u5236 (Event)"}, {"color": "#4e79a7", "font": {"color": "#222222"}, "id": "\u751f\u4ea7\u961f", "label": "\u751f\u4ea7\u961f", "shape": "dot", "size": 16, "title": "\u751f\u4ea7\u961f (Organization)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u7816\u7a91", "label": "\u7816\u7a91", "shape": "dot", "size": 16, "title": "\u7816\u7a91 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5192\u5c16\u6237", "label": "\u5192\u5c16\u6237", "shape": "dot", "size": 16, "title": "\u5192\u5c16\u6237 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5916\u9762\u4e16\u754c", "label": "\u5916\u9762\u4e16\u754c", "shape": "dot", "size": 16, "title": "\u5916\u9762\u4e16\u754c (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5efa\u7b51\u5de5\u4eba", "label": "\u5efa\u7b51\u5de5\u4eba", "shape": "dot", "size": 16, "title": "\u5efa\u7b51\u5de5\u4eba (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u7164\u77ff\u5de5\u4eba", "label": "\u7164\u77ff\u5de5\u4eba", "shape": "dot", "size": 16, "title": "\u7164\u77ff\u5de5\u4eba (Concept)"}, {"color": "#4e79a7", "font": {"color": "#222222"}, "id": "\u5e08\u4e13", "label": "\u5e08\u4e13", "shape": "dot", "size": 16, "title": "\u5e08\u4e13 (Organization)"}, {"color": "#4e79a7", "font": {"color": "#222222"}, "id": "\u7701\u62a5", "label": "\u7701\u62a5", "shape": "dot", "size": 16, "title": "\u7701\u62a5 (Organization)"}, {"color": "#4e79a7", "font": {"color": "#222222"}, "id": "\u56e2\u5730\u59d4", "label": "\u56e2\u5730\u59d4", "shape": "dot", "size": 16, "title": "\u56e2\u5730\u59d4 (Organization)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u9152\u540e\u5f00\u8f66", "label": "\u9152\u540e\u5f00\u8f66", "shape": "dot", "size": 16, "title": "\u9152\u540e\u5f00\u8f66 (Concept)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u7530\u6da6\u751f", "label": "\u7530\u6da6\u751f", "shape": "dot", "size": 16, "title": "\u7530\u6da6\u751f (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u65b0\u65f6\u671f\u53d8\u9769", "label": "\u65b0\u65f6\u671f\u53d8\u9769", "shape": "dot", "size": 16, "title": "\u65b0\u65f6\u671f\u53d8\u9769 (Concept)"}, {"color": "#59a14f", "font": {"color": "#222222"}, "id": "\u7164\u77ff", "label": "\u7164\u77ff", "shape": "dot", "size": 16, "title": "\u7164\u77ff (Place)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u4f18\u79c0\u5de5\u4eba", "label": "\u4f18\u79c0\u5de5\u4eba", "shape": "dot", "size": 16, "title": "\u4f18\u79c0\u5de5\u4eba (Concept)"}, {"color": "#f28e2b", "font": {"color": "#222222"}, "id": "\u6297\u6d2a\u91c7\u8bbf", "label": "\u6297\u6d2a\u91c7\u8bbf", "shape": "dot", "size": 16, "title": "\u6297\u6d2a\u91c7\u8bbf (Event)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u707e\u6c11", "label": "\u707e\u6c11", "shape": "dot", "size": 16, "title": "\u707e\u6c11 (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u7530\u6653\u971e\u727a\u7272", "label": "\u7530\u6653\u971e\u727a\u7272", "shape": "dot", "size": 16, "title": "\u7530\u6653\u971e\u727a\u7272 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u673a\u5668\u5236\u7816", "label": "\u673a\u5668\u5236\u7816", "shape": "dot", "size": 16, "title": "\u673a\u5668\u5236\u7816 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u91cd\u5927\u635f\u5931", "label": "\u91cd\u5927\u635f\u5931", "shape": "dot", "size": 16, "title": "\u91cd\u5927\u635f\u5931 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u670b\u53cb", "label": "\u670b\u53cb", "shape": "dot", "size": 16, "title": "\u670b\u53cb (Concept)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u53bf\u957f", "label": "\u53bf\u957f", "shape": "dot", "size": 16, "title": "\u53bf\u957f (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5f53\u5730\u793e\u4f1a\u4e3b\u4e49\u5efa\u8bbe", "label": "\u5f53\u5730\u793e\u4f1a\u4e3b\u4e49\u5efa\u8bbe", "shape": "dot", "size": 16, "title": "\u5f53\u5730\u793e\u4f1a\u4e3b\u4e49\u5efa\u8bbe (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u80ba\u764c", "label": "\u80ba\u764c", "shape": "dot", "size": 16, "title": "\u80ba\u764c (Concept)"}, {"color": "#4e79a7", "font": {"color": "#222222"}, "id": "\u5c0f\u5b66", "label": "\u5c0f\u5b66", "shape": "dot", "size": 16, "title": "\u5c0f\u5b66 (Organization)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u80d6\u513f\u5b50", "label": "\u80d6\u513f\u5b50", "shape": "dot", "size": 16, "title": "\u80d6\u513f\u5b50 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u7236\u6bcd", "label": "\u7236\u6bcd", "shape": "dot", "size": 16, "title": "\u7236\u6bcd (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u7530\u6da6\u751f\u4e0e\u90dd\u7ea2\u6885\u7684\u5a5a\u4e8b", "label": "\u7530\u6da6\u751f\u4e0e\u90dd\u7ea2\u6885\u7684\u5a5a\u4e8b", "shape": "dot", "size": 16, "title": "\u7530\u6da6\u751f\u4e0e\u90dd\u7ea2\u6885\u7684\u5a5a\u4e8b (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5973\u513f", "label": "\u5973\u513f", "shape": "dot", "size": 16, "title": "\u5973\u513f (Concept)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u5f92\u5f1f", "label": "\u5f92\u5f1f", "shape": "dot", "size": 16, "title": "\u5f92\u5f1f (Person)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u4e8b\u6545", "label": "\u4e8b\u6545", "shape": "dot", "size": 16, "title": "\u4e8b\u6545 (Concept)"}, {"color": "#bab0ac", "font": {"color": "#222222"}, "id": "\u5b59\u5c11\u5e73\u9762\u5bb9", "label": "\u5b59\u5c11\u5e73\u9762\u5bb9", "shape": "dot", "size": 16, "title": "\u5b59\u5c11\u5e73\u9762\u5bb9 (Concept)"}, {"color": "#e15759", "font": {"color": "#222222"}, "id": "\u91d1\u6ce2\u4e4b\u59b9", "label": "\u91d1\u6ce2\u4e4b\u59b9", "shape": "dot", "size": 16, "title": "\u91d1\u6ce2\u4e4b\u59b9 (Person)"}, {"color": "#59a14f", "font": {"color": "#222222"}, "id": "\u77ff\u5c71", "label": "\u77ff\u5c71", "shape": "dot", "size": 16, "title": "\u77ff\u5c71 (Place)"}]);
+                  edges = new vis.DataSet([{"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "STUDY_AT", "title": "STUDY_AT", "to": "\u539f\u897f\u53bf\u9ad8\u4e2d"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "CLASSMATE", "title": "CLASSMATE", "to": "\u4faf\u7389\u82f1"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "LOVE", "title": "LOVE", "to": "\u90dd\u7ea2\u6885"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "LOSE_CONTACT", "title": "LOSE_CONTACT", "to": "\u90dd\u7ea2\u6885"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "WORK_AT", "title": "WORK_AT", "to": "\u6559\u5e08"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "FRIEND", "title": "FRIEND", "to": "\u7530\u6653\u971e"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "PROMISE", "title": "PROMISE", "to": "\u7530\u6653\u971e"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "LOVE", "title": "LOVE", "to": "\u7530\u6653\u971e"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "RETURN_TO", "title": "RETURN_TO", "to": "\u5916\u9762\u4e16\u754c"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "WORK_AT", "title": "WORK_AT", "to": "\u5efa\u7b51\u5de5\u4eba"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "WORK_AT", "title": "WORK_AT", "to": "\u7164\u77ff\u5de5\u4eba"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "WORK_AT", "title": "WORK_AT", "to": "\u7164\u77ff"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "WORK_AT", "title": "WORK_AT", "to": "\u4f18\u79c0\u5de5\u4eba"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "GRIEVE", "title": "GRIEVE", "to": "\u7530\u6653\u971e\u727a\u7272"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "RESCUE", "title": "RESCUE", "to": "\u5f92\u5f1f"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "REJECT", "title": "REJECT", "to": "\u91d1\u6ce2\u4e4b\u59b9"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5e73", "label": "RETURN_TO", "title": "RETURN_TO", "to": "\u77ff\u5c71"}, {"arrows": "to", "color": "#999999", "from": "\u4faf\u7389\u82f1", "label": "DISCOVER", "title": "DISCOVER", "to": "\u5b59\u5c11\u5e73\u4e0e\u90dd\u7ea2\u6885\u7684\u604b\u60c5"}, {"arrows": "to", "color": "#999999", "from": "\u90dd\u7ea2\u6885", "label": "LOVE", "title": "LOVE", "to": "\u987e\u517b\u6c11"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6653\u971e", "label": "SUPPORT", "title": "SUPPORT", "to": "\u5b59\u5c11\u5e73"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6653\u971e", "label": "LOVE", "title": "LOVE", "to": "\u5b59\u5c11\u5e73"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6653\u971e", "label": "STUDY_AT", "title": "STUDY_AT", "to": "\u5e08\u4e13"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6653\u971e", "label": "WORK_AT", "title": "WORK_AT", "to": "\u7701\u62a5"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6653\u971e", "label": "DIE_IN", "title": "DIE_IN", "to": "\u6297\u6d2a\u91c7\u8bbf"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6653\u971e", "label": "RESCUE", "title": "RESCUE", "to": "\u707e\u6c11"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u519b", "label": "WORK_AT", "title": "WORK_AT", "to": "\u53bf\u9769\u59d4\u526f\u4e3b\u4efb"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u519b", "label": "PARENT_OF", "title": "PARENT_OF", "to": "\u7530\u6653\u971e"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u519b", "label": "INFORM", "title": "INFORM", "to": "\u5b59\u5c11\u5e73"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "SIBLING", "title": "SIBLING", "to": "\u5b59\u5c11\u5e73"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "CHILDHOOD_SWEETHEART", "title": "CHILDHOOD_SWEETHEART", "to": "\u7530\u6da6\u53f6"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "LOVE", "title": "LOVE", "to": "\u7530\u6da6\u53f6"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "ARRANGE", "title": "ARRANGE", "to": "\u79c0\u83b2"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "MARRY", "title": "MARRY", "to": "\u79c0\u83b2"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "LEAD", "title": "LEAD", "to": "\u751f\u4ea7\u961f"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "PROMOTE", "title": "PROMOTE", "to": "\u8d23\u4efb\u5236"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "BUSINESS", "title": "BUSINESS", "to": "\u7816\u7a91"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "LOAN", "title": "LOAN", "to": "\u7816\u7a91"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "WORK_AT", "title": "WORK_AT", "to": "\u5192\u5c16\u6237"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "BUSINESS", "title": "BUSINESS", "to": "\u673a\u5668\u5236\u7816"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "LOAN", "title": "LOAN", "to": "\u673a\u5668\u5236\u7816"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "LEAD", "title": "LEAD", "to": "\u5f53\u5730\u793e\u4f1a\u4e3b\u4e49\u5efa\u8bbe"}, {"arrows": "to", "color": "#999999", "from": "\u5b59\u5c11\u5b89", "label": "DONATE", "title": "DONATE", "to": "\u5c0f\u5b66"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u53f6", "label": "WORK_AT", "title": "WORK_AT", "to": "\u53bf\u57ce\u6559\u5e08"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u53f6", "label": "LOVE", "title": "LOVE", "to": "\u5b59\u5c11\u5b89"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u53f6", "label": "MARRY", "title": "MARRY", "to": "\u674e\u5411\u524d"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u53f6", "label": "RETURN_TO", "title": "RETURN_TO", "to": "\u674e\u5411\u524d"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u53f6", "label": "WORK_AT", "title": "WORK_AT", "to": "\u56e2\u5730\u59d4"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u53f6", "label": "GIVE_BIRTH", "title": "GIVE_BIRTH", "to": "\u80d6\u513f\u5b50"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "WORK_AT", "title": "WORK_AT", "to": "\u6751\u652f\u4e66"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "PARENT_OF", "title": "PARENT_OF", "to": "\u7530\u6da6\u53f6"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "OPPOSE", "title": "OPPOSE", "to": "\u5b59\u5c11\u5b89\u4e0e\u7530\u6da6\u53f6\u7684\u5a5a\u4e8b"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "ARRANGE", "title": "ARRANGE", "to": "\u674e\u5411\u524d"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "ORGANIZE", "title": "ORGANIZE", "to": "\u5077\u6316\u6cb3\u575d\u4e0e\u4e0a\u6e38\u62a2\u6c34"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "ORGANIZE", "title": "ORGANIZE", "to": "\u70b8\u5c71\u4fee\u7530"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "ORGANIZE", "title": "ORGANIZE", "to": "\u519c\u4e1a\u5b66\u5927\u5be8"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "ORGANIZE", "title": "ORGANIZE", "to": "\u652f\u90e8\u4f1a"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "RESIST", "title": "RESIST", "to": "\u8d23\u4efb\u5236"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u798f\u5802", "label": "RESIST", "title": "RESIST", "to": "\u65b0\u65f6\u671f\u53d8\u9769"}, {"arrows": "to", "color": "#999999", "from": "\u79c0\u83b2", "label": "SPOUSE", "title": "SPOUSE", "to": "\u5b59\u5c11\u5b89"}, {"arrows": "to", "color": "#999999", "from": "\u79c0\u83b2", "label": "DIAGNOSE", "title": "DIAGNOSE", "to": "\u80ba\u764c"}, {"arrows": "to", "color": "#999999", "from": "\u674e\u5411\u524d", "label": "LOVE", "title": "LOVE", "to": "\u7530\u6da6\u53f6"}, {"arrows": "to", "color": "#999999", "from": "\u674e\u5411\u524d", "label": "SPOUSE", "title": "SPOUSE", "to": "\u7530\u6da6\u53f6"}, {"arrows": "to", "color": "#999999", "from": "\u674e\u5411\u524d", "label": "DISABLED_IN", "title": "DISABLED_IN", "to": "\u9152\u540e\u5f00\u8f66"}, {"arrows": "to", "color": "#999999", "from": "\u7816\u7a91", "label": "SUFFER_LOSS", "title": "SUFFER_LOSS", "to": "\u91cd\u5927\u635f\u5931"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u751f", "label": "SIBLING", "title": "SIBLING", "to": "\u7530\u6da6\u53f6"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u751f", "label": "LOVE", "title": "LOVE", "to": "\u90dd\u7ea2\u6885"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u751f", "label": "MARRY", "title": "MARRY", "to": "\u90dd\u7ea2\u6885"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u751f", "label": "MARRY", "title": "MARRY", "to": "\u90dd\u7ea2\u6885"}, {"arrows": "to", "color": "#999999", "from": "\u7530\u6da6\u751f", "label": "GIVE_BIRTH", "title": "GIVE_BIRTH", "to": "\u5973\u513f"}, {"arrows": "to", "color": "#999999", "from": "\u670b\u53cb", "label": "SUPPORT", "title": "SUPPORT", "to": "\u5b59\u5c11\u5b89"}, {"arrows": "to", "color": "#999999", "from": "\u53bf\u957f", "label": "SUPPORT", "title": "SUPPORT", "to": "\u5b59\u5c11\u5b89"}, {"arrows": "to", "color": "#999999", "from": "\u7236\u6bcd", "label": "RECOGNIZE", "title": "RECOGNIZE", "to": "\u7530\u6da6\u751f\u4e0e\u90dd\u7ea2\u6885\u7684\u5a5a\u4e8b"}, {"arrows": "to", "color": "#999999", "from": "\u4e8b\u6545", "label": "DISABLE", "title": "DISABLE", "to": "\u5b59\u5c11\u5e73\u9762\u5bb9"}, {"arrows": "to", "color": "#999999", "from": "\u91d1\u6ce2\u4e4b\u59b9", "label": "CONFESS", "title": "CONFESS", "to": "\u5b59\u5c11\u5e73"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

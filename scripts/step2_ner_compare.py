@@ -107,7 +107,7 @@ class BiLSTMCRF(nn.Module):
             alpha = self.trans[self.START].unsqueeze(0) + feats[0].unsqueeze(0)
             for i in range(1, L):
                 alpha = self.logsumexp(alpha.unsqueeze(2) + self.trans.unsqueeze(0) + feats[i].unsqueeze(0), dim=1).squeeze(1)
-            total = self.logsumexp(alpha.squeeze(0) + self.trans[:, self.STOP].unsqueeze(0), dim=0).squeeze(0)
+            total = self.logsumexp(alpha.squeeze(0) + self.trans[:, self.STOP], dim=0).squeeze(0)
             return score - total
 
         alpha = self.trans[self.START].unsqueeze(0) + feats[0].unsqueeze(0)
@@ -153,52 +153,75 @@ def bilstm_extract(text, sents, mentions, epochs=45):
         seqs.append(([c2i[c] for c in sent], [t2i[t] for t in tags], start))
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = BiLSTMCRF(len(c2i) + 1, len(tag_list)).to(device)
-    opt = torch.optim.Adam(model.parameters(), lr=0.015)
+
+    def train(model, data, n_epochs):
+        opt = torch.optim.Adam(model.parameters(), lr=0.015)
+        model.train()
+        for ep in range(n_epochs):
+            random.shuffle(data)
+            total = 0.0
+            for xs, ys, _ in data:
+                x = torch.tensor(xs, dtype=torch.long, device=device)
+                y = torch.tensor(ys, dtype=torch.long, device=device)
+                opt.zero_grad()
+                loss = -model(x, y)
+                loss.backward()
+                opt.step()
+                total += loss.item()
+            if (ep + 1) % 15 == 0:
+                print(f"  bilstm epoch {ep+1}/{n_epochs} loss={total/len(data):.3f}")
+        return model
+
+    def predict(model, data):
+        model.eval()
+        preds = []
+        with torch.no_grad():
+            for xs, _, start in data:
+                x = torch.tensor(xs, dtype=torch.long, device=device)
+                path = model(x)
+                cur = None
+                for i, tid in enumerate(path):
+                    tag = tag_list[tid]
+                    if tag.startswith("B-"):
+                        if cur:
+                            preds.append(cur)
+                        cur = {"start": start + i, "end": start + i + 1,
+                               "text": text[start + i], "type": tag[2:]}
+                    elif tag.startswith("I-") and cur and tag[2:] == cur["type"]:
+                        cur["end"] = start + i + 1
+                        cur["text"] = text[cur["start"]:cur["end"]]
+                    else:
+                        if cur:
+                            preds.append(cur)
+                        cur = None
+                if cur:
+                    preds.append(cur)
+        for p in preds:
+            p["canonical"] = p["text"]
+        return preds
+
+    # 留出法：80% 句子训练、20% 句子测试，避免报告记忆化后的虚高分数
+    shuffled = seqs[:]
+    random.shuffle(shuffled)
+    cut = max(1, int(len(shuffled) * 0.8))
+    train_seqs, test_seqs = shuffled[:cut], shuffled[cut:]
+    test_starts = {s for _, _, s in test_seqs}
+    test_gold = [m for m in mentions if m["start"] in test_starts]
+
     t0 = time.time()
-    model.train()
-    for ep in range(epochs):
-        random.shuffle(seqs)
-        total = 0.0
-        for xs, ys, _ in seqs:
-            x = torch.tensor(xs, dtype=torch.long, device=device)
-            y = torch.tensor(ys, dtype=torch.long, device=device)
-            opt.zero_grad()
-            loss = -model(x, y)
-            loss.backward()
-            opt.step()
-            total += loss.item()
-        if (ep + 1) % 15 == 0:
-            print(f"  bilstm epoch {ep+1}/{epochs} loss={total/len(seqs):.3f}")
+    holdout_model = train(BiLSTMCRF(len(c2i) + 1, len(tag_list)).to(device), train_seqs, epochs)
+    holdout_pred = predict(holdout_model, test_seqs)
+    holdout_scores = ner_scores(holdout_pred, test_gold)
+
+    # 全量重训，用于生成整篇文本的实体抽取结果
+    model = train(BiLSTMCRF(len(c2i) + 1, len(tag_list)).to(device), seqs, epochs)
+    preds = predict(model, seqs)
     seconds = time.time() - t0
 
-    model.eval()
-    preds = []
-    with torch.no_grad():
-        for xs, _, start in seqs:
-            x = torch.tensor(xs, dtype=torch.long, device=device)
-            path = model(x)
-            cur = None
-            for i, tid in enumerate(path):
-                tag = tag_list[tid]
-                if tag.startswith("B-"):
-                    if cur:
-                        preds.append(cur)
-                    cur = {"start": start + i, "end": start + i + 1,
-                           "text": text[start + i], "type": tag[2:]}
-                elif tag.startswith("I-") and cur and tag[2:] == cur["type"]:
-                    cur["end"] = start + i + 1
-                    cur["text"] = text[cur["start"]:cur["end"]]
-                else:
-                    if cur:
-                        preds.append(cur)
-                    cur = None
-            if cur:
-                preds.append(cur)
-    for p in preds:
-        p["canonical"] = p["text"]
     return {"status": "ok", "model": "char-BiLSTM-CRF (PyTorch, 自实现)",
-            "mentions": preds, "seconds": round(seconds, 2), "epochs": epochs}, []
+            "mentions": preds, "seconds": round(seconds, 2), "epochs": epochs,
+            "holdout_scores": holdout_scores, "n_train_sents": len(train_seqs),
+            "n_test_sents": len(test_seqs)}, []
 
 
 # ---------------------------------------------------------------- 主流程
@@ -256,6 +279,13 @@ def main():
         a, b = s["strict"], s["loose"]
         lines.append(f"| {name} | {a['precision']} | {a['recall']} | **{a['f1']}** | "
                      f"{b['precision']} | {b['recall']} | **{b['f1']}** |")
+    hs = bilstm.get("holdout_scores")
+    if hs:
+        a, b = hs["strict"], hs["loose"]
+        lines += ["", "> BiLSTM-CRF 的上表为**全量重训后在训练集上的抽取结果**（标签由词典蒸馏，故接近 1.0，属于记忆化）。",
+                  "> 为避免虚高，额外做 80/20 句子留出测试：", "",
+                  "| 方法 | 严格 P | 严格 R | 严格 F1 | 宽松 F1 |", "| --- | ---: | ---: | ---: | ---: |",
+                  f"| BiLSTM-CRF（留出集 {bilstm.get('n_test_sents')} 句） | {a['precision']} | {a['recall']} | **{a['f1']}** | **{b['f1']}** |", ""]
 
     lines += ["", "## 4. 实体级指标（去重、别名归并后）", "",
               "| 方法 | Precision | Recall | F1 | 预测实体数 |", "| --- | ---: | ---: | ---: | ---: |"]

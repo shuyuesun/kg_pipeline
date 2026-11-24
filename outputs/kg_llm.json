@@ -1,0 +1,730 @@
+{
+  "nodes": [
+    {
+      "id": "孙少平",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "原西县高中",
+      "label": "Organization",
+      "type": "ORG"
+    },
+    {
+      "id": "侯玉英",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "郝红梅",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "孙少平与郝红梅的恋情",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "顾养民",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "教师",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "田晓霞",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "田福军",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "县革委副主任",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "孙少安",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "田润叶",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "田福堂",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "村支书",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "县城教师",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "孙少安与田润叶的婚事",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "秀莲",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "李向前",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "偷挖河坝与上游抢水",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "炸山修田",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "农业学大寨",
+      "label": "Event",
+      "type": "EVENT"
+    },
+    {
+      "id": "支部会",
+      "label": "Event",
+      "type": "EVENT"
+    },
+    {
+      "id": "责任制",
+      "label": "Event",
+      "type": "EVENT"
+    },
+    {
+      "id": "生产队",
+      "label": "Organization",
+      "type": "ORG"
+    },
+    {
+      "id": "砖窑",
+      "label": "Concept",
+      "type": "MISC"
+    },
+    {
+      "id": "冒尖户",
+      "label": "Concept",
+      "type": "MISC"
+    },
+    {
+      "id": "外面世界",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "建筑工人",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "煤矿工人",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "师专",
+      "label": "Organization",
+      "type": "ORG"
+    },
+    {
+      "id": "省报",
+      "label": "Organization",
+      "type": "ORG"
+    },
+    {
+      "id": "团地委",
+      "label": "Organization",
+      "type": "ORG"
+    },
+    {
+      "id": "酒后开车",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "田润生",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "新时期变革",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "煤矿",
+      "label": "Place",
+      "type": "LOC"
+    },
+    {
+      "id": "优秀工人",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "抗洪采访",
+      "label": "Event",
+      "type": "EVENT"
+    },
+    {
+      "id": "灾民",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "田晓霞牺牲",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "机器制砖",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "重大损失",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "朋友",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "县长",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "当地社会主义建设",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "肺癌",
+      "label": "Concept",
+      "type": "MISC"
+    },
+    {
+      "id": "小学",
+      "label": "Organization",
+      "type": "ORG"
+    },
+    {
+      "id": "胖儿子",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "父母",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "田润生与郝红梅的婚事",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "女儿",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "徒弟",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "事故",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "孙少平面容",
+      "label": "Concept",
+      "type": "CONCEPT"
+    },
+    {
+      "id": "金波之妹",
+      "label": "Person",
+      "type": "PER"
+    },
+    {
+      "id": "矿山",
+      "label": "Place",
+      "type": "LOC"
+    }
+  ],
+  "edges": [
+    {
+      "source": "孙少平",
+      "target": "原西县高中",
+      "relation": "STUDY_AT",
+      "evidence": "1975年初农民子弟孙少平到原西县高中读书"
+    },
+    {
+      "source": "孙少平",
+      "target": "侯玉英",
+      "relation": "CLASSMATE",
+      "evidence": "在被同班同学侯玉英发现并当众说破后"
+    },
+    {
+      "source": "孙少平",
+      "target": "郝红梅",
+      "relation": "LOVE",
+      "evidence": "后对处境相同的地主家庭出身的郝红梅产生情愫"
+    },
+    {
+      "source": "孙少平",
+      "target": "郝红梅",
+      "relation": "LOSE_CONTACT",
+      "evidence": "与郝红梅关系渐变恶劣"
+    },
+    {
+      "source": "孙少平",
+      "target": "教师",
+      "relation": "WORK_AT",
+      "evidence": "少平高中毕业，回到家乡做了一名教师"
+    },
+    {
+      "source": "孙少平",
+      "target": "田晓霞",
+      "relation": "FRIEND",
+      "evidence": "他与县革委副主任田福军女儿田晓霞建立了友情"
+    },
+    {
+      "source": "孙少平",
+      "target": "田晓霞",
+      "relation": "PROMISE",
+      "evidence": "他们相约两年后再相会"
+    },
+    {
+      "source": "孙少平",
+      "target": "田晓霞",
+      "relation": "LOVE",
+      "evidence": "就在孙少平与田晓霞产生强烈感情的时候"
+    },
+    {
+      "source": "孙少平",
+      "target": "外面世界",
+      "relation": "RETURN_TO",
+      "evidence": "少平青春的梦想和追求也激励着他到外面去“闯荡世界”"
+    },
+    {
+      "source": "孙少平",
+      "target": "建筑工人",
+      "relation": "WORK_AT",
+      "evidence": "他从漂泊的揽工汉成为正式的建筑工人"
+    },
+    {
+      "source": "孙少平",
+      "target": "煤矿工人",
+      "relation": "WORK_AT",
+      "evidence": "最后又获得了当煤矿工人的好机遇"
+    },
+    {
+      "source": "孙少平",
+      "target": "煤矿",
+      "relation": "WORK_AT",
+      "evidence": "1982年孙少平到了煤矿"
+    },
+    {
+      "source": "孙少平",
+      "target": "优秀工人",
+      "relation": "WORK_AT",
+      "evidence": "从学生成了一名优秀工人"
+    },
+    {
+      "source": "孙少平",
+      "target": "田晓霞牺牲",
+      "relation": "GRIEVE",
+      "evidence": "少平悲痛不已"
+    },
+    {
+      "source": "孙少平",
+      "target": "徒弟",
+      "relation": "RESCUE",
+      "evidence": "27岁的少平在一次事故中为救护徒弟也受了重伤"
+    },
+    {
+      "source": "孙少平",
+      "target": "金波之妹",
+      "relation": "REJECT",
+      "evidence": "少平为她的前途与自己的感情选择拒绝"
+    },
+    {
+      "source": "孙少平",
+      "target": "矿山",
+      "relation": "RETURN_TO",
+      "evidence": "又充满信心地回到了矿山"
+    },
+    {
+      "source": "侯玉英",
+      "target": "孙少平与郝红梅的恋情",
+      "relation": "DISCOVER",
+      "evidence": "在被同班同学侯玉英发现并当众说破后"
+    },
+    {
+      "source": "郝红梅",
+      "target": "顾养民",
+      "relation": "LOVE",
+      "evidence": "后来郝红梅却与家境优越的顾养民恋爱"
+    },
+    {
+      "source": "田晓霞",
+      "target": "孙少平",
+      "relation": "SUPPORT",
+      "evidence": "在晓霞帮助下关注着外面的世界"
+    },
+    {
+      "source": "田晓霞",
+      "target": "孙少平",
+      "relation": "LOVE",
+      "evidence": "他的女友晓霞从师专毕业后到省报当了记者"
+    },
+    {
+      "source": "田晓霞",
+      "target": "师专",
+      "relation": "STUDY_AT",
+      "evidence": "他的女友晓霞从师专毕业后到省报当了记者"
+    },
+    {
+      "source": "田晓霞",
+      "target": "省报",
+      "relation": "WORK_AT",
+      "evidence": "他的女友晓霞从师专毕业后到省报当了记者"
+    },
+    {
+      "source": "田晓霞",
+      "target": "抗洪采访",
+      "relation": "DIE_IN",
+      "evidence": "田晓霞却因在抗洪采访中为抢救灾民光荣牺牲了"
+    },
+    {
+      "source": "田晓霞",
+      "target": "灾民",
+      "relation": "RESCUE",
+      "evidence": "田晓霞却因在抗洪采访中为抢救灾民光荣牺牲了"
+    },
+    {
+      "source": "田福军",
+      "target": "县革委副主任",
+      "relation": "WORK_AT",
+      "evidence": "他与县革委副主任田福军女儿田晓霞建立了友情"
+    },
+    {
+      "source": "田福军",
+      "target": "田晓霞",
+      "relation": "PARENT_OF",
+      "evidence": "他与县革委副主任田福军女儿田晓霞建立了友情"
+    },
+    {
+      "source": "田福军",
+      "target": "孙少平",
+      "relation": "INFORM",
+      "evidence": "后来田福军给孙少平发了封电报"
+    },
+    {
+      "source": "孙少安",
+      "target": "孙少平",
+      "relation": "SIBLING",
+      "evidence": "少平的哥哥少安一直在家劳动"
+    },
+    {
+      "source": "孙少安",
+      "target": "田润叶",
+      "relation": "CHILDHOOD_SWEETHEART",
+      "evidence": "与村支书田福堂的女儿——县城教师田润叶青梅竹马"
+    },
+    {
+      "source": "孙少安",
+      "target": "田润叶",
+      "relation": "LOVE",
+      "evidence": "少安和润叶互有爱慕之心"
+    },
+    {
+      "source": "孙少安",
+      "target": "秀莲",
+      "relation": "ARRANGE",
+      "evidence": "少安到山西与勤劳善良的秀莲相亲并结了婚"
+    },
+    {
+      "source": "孙少安",
+      "target": "秀莲",
+      "relation": "MARRY",
+      "evidence": "少安到山西与勤劳善良的秀莲相亲并结了婚"
+    },
+    {
+      "source": "孙少安",
+      "target": "生产队",
+      "relation": "LEAD",
+      "evidence": "孙少安却领导生产队率先实行"
+    },
+    {
+      "source": "孙少安",
+      "target": "责任制",
+      "relation": "PROMOTE",
+      "evidence": "接着也就在全村推广了责任制"
+    },
+    {
+      "source": "孙少安",
+      "target": "砖窑",
+      "relation": "BUSINESS",
+      "evidence": "用赚的钱建窑烧砖（大部分为贷款）"
+    },
+    {
+      "source": "孙少安",
+      "target": "砖窑",
+      "relation": "LOAN",
+      "evidence": "用赚的钱建窑烧砖（大部分为贷款）"
+    },
+    {
+      "source": "孙少安",
+      "target": "冒尖户",
+      "relation": "WORK_AT",
+      "evidence": "成了公社的“冒尖户”"
+    },
+    {
+      "source": "孙少安",
+      "target": "机器制砖",
+      "relation": "BUSINESS",
+      "evidence": "他决定贷款扩建机器制砖"
+    },
+    {
+      "source": "孙少安",
+      "target": "机器制砖",
+      "relation": "LOAN",
+      "evidence": "他决定贷款扩建机器制砖"
+    },
+    {
+      "source": "孙少安",
+      "target": "当地社会主义建设",
+      "relation": "LEAD",
+      "evidence": "终于成了当地社会主义建设的领头人"
+    },
+    {
+      "source": "孙少安",
+      "target": "小学",
+      "relation": "DONATE",
+      "evidence": "在欢庆由他家出资一万五千元扩建的小学会上口吐鲜血"
+    },
+    {
+      "source": "田润叶",
+      "target": "县城教师",
+      "relation": "WORK_AT",
+      "evidence": "与村支书田福堂的女儿——县城教师田润叶青梅竹马"
+    },
+    {
+      "source": "田润叶",
+      "target": "孙少安",
+      "relation": "LOVE",
+      "evidence": "少安和润叶互有爱慕之心"
+    },
+    {
+      "source": "田润叶",
+      "target": "李向前",
+      "relation": "MARRY",
+      "evidence": "润叶也只得含泪与父亲介绍的一直对她有爱慕之情的李向前结婚"
+    },
+    {
+      "source": "田润叶",
+      "target": "李向前",
+      "relation": "RETURN_TO",
+      "evidence": "润叶感到内疚回到丈夫身边"
+    },
+    {
+      "source": "田润叶",
+      "target": "团地委",
+      "relation": "WORK_AT",
+      "evidence": "润叶远离她不爱的丈夫到团地委工作"
+    },
+    {
+      "source": "田润叶",
+      "target": "胖儿子",
+      "relation": "GIVE_BIRTH",
+      "evidence": "润叶生活幸福，生了个胖儿子"
+    },
+    {
+      "source": "田福堂",
+      "target": "村支书",
+      "relation": "WORK_AT",
+      "evidence": "与村支书田福堂的女儿——县城教师田润叶青梅竹马"
+    },
+    {
+      "source": "田福堂",
+      "target": "田润叶",
+      "relation": "PARENT_OF",
+      "evidence": "与村支书田福堂的女儿——县城教师田润叶青梅竹马"
+    },
+    {
+      "source": "田福堂",
+      "target": "孙少安与田润叶的婚事",
+      "relation": "OPPOSE",
+      "evidence": "却遭到田福堂反对"
+    },
+    {
+      "source": "田福堂",
+      "target": "李向前",
+      "relation": "ARRANGE",
+      "evidence": "润叶也只得含泪与父亲介绍的一直对她有爱慕之情的李向前结婚"
+    },
+    {
+      "source": "田福堂",
+      "target": "偷挖河坝与上游抢水",
+      "relation": "ORGANIZE",
+      "evidence": "田福堂为了加强自己的威信，组织偷挖河坝与上游抢水"
+    },
+    {
+      "source": "田福堂",
+      "target": "炸山修田",
+      "relation": "ORGANIZE",
+      "evidence": "为了“农业学大寨”，他好大喜功炸山修田叫人搬家又弄得天怒人怨"
+    },
+    {
+      "source": "田福堂",
+      "target": "农业学大寨",
+      "relation": "ORGANIZE",
+      "evidence": "为了“农业学大寨”，他好大喜功炸山修田叫人搬家又弄得天怒人怨"
+    },
+    {
+      "source": "田福堂",
+      "target": "支部会",
+      "relation": "ORGANIZE",
+      "evidence": "田福堂连夜召开支部会抵制责任制"
+    },
+    {
+      "source": "田福堂",
+      "target": "责任制",
+      "relation": "RESIST",
+      "evidence": "田福堂连夜召开支部会抵制责任制"
+    },
+    {
+      "source": "田福堂",
+      "target": "新时期变革",
+      "relation": "RESIST",
+      "evidence": "不仅对新时期的变革抵触"
+    },
+    {
+      "source": "秀莲",
+      "target": "孙少安",
+      "relation": "SPOUSE",
+      "evidence": "少安的妻子秀莲"
+    },
+    {
+      "source": "秀莲",
+      "target": "肺癌",
+      "relation": "DIAGNOSE",
+      "evidence": "确诊肺癌"
+    },
+    {
+      "source": "李向前",
+      "target": "田润叶",
+      "relation": "LOVE",
+      "evidence": "润叶也只得含泪与父亲介绍的一直对她有爱慕之情的李向前结婚"
+    },
+    {
+      "source": "李向前",
+      "target": "田润叶",
+      "relation": "SPOUSE",
+      "evidence": "润叶远离她不爱的丈夫到团地委工作"
+    },
+    {
+      "source": "李向前",
+      "target": "酒后开车",
+      "relation": "DISABLED_IN",
+      "evidence": "引起钟情痴心的丈夫酒后开车致残"
+    },
+    {
+      "source": "砖窑",
+      "target": "重大损失",
+      "relation": "SUFFER_LOSS",
+      "evidence": "砖窑蒙受很大损失"
+    },
+    {
+      "source": "田润生",
+      "target": "田润叶",
+      "relation": "SIBLING",
+      "evidence": "她的弟弟润生也已长大成人"
+    },
+    {
+      "source": "田润生",
+      "target": "郝红梅",
+      "relation": "LOVE",
+      "evidence": "他在异乡与命运坎坷的郝红梅邂逅"
+    },
+    {
+      "source": "田润生",
+      "target": "郝红梅",
+      "relation": "MARRY",
+      "evidence": "终于两人结为夫妻"
+    },
+    {
+      "source": "田润生",
+      "target": "郝红梅",
+      "relation": "MARRY",
+      "evidence": "润生和郝红梅的婚事也终于得到了父母的承认"
+    },
+    {
+      "source": "田润生",
+      "target": "女儿",
+      "relation": "GIVE_BIRTH",
+      "evidence": "并添了可爱的女儿"
+    },
+    {
+      "source": "朋友",
+      "target": "孙少安",
+      "relation": "SUPPORT",
+      "evidence": "后来在朋友和县长的帮助下再度奋起"
+    },
+    {
+      "source": "县长",
+      "target": "孙少安",
+      "relation": "SUPPORT",
+      "evidence": "后来在朋友和县长的帮助下再度奋起"
+    },
+    {
+      "source": "父母",
+      "target": "田润生与郝红梅的婚事",
+      "relation": "RECOGNIZE",
+      "evidence": "润生和郝红梅的婚事也终于得到了父母的承认"
+    },
+    {
+      "source": "事故",
+      "target": "孙少平面容",
+      "relation": "DISABLE",
+      "evidence": "英俊面容尽毁"
+    },
+    {
+      "source": "金波之妹",
+      "target": "孙少平",
+      "relation": "CONFESS",
+      "evidence": "却遇少时玩伴金波之妹表白"
+    }
+  ]
+}

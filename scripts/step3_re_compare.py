@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import random
+import re
 import time
 from collections import Counter
 
@@ -43,7 +44,7 @@ CUES = [
     (r"爱慕|情愫|恋情|恋爱|女友|强烈感情|表白", "情感"),
     (r"结婚|结为夫妻|妻子|丈夫|夫妻|相亲", "家庭"),
     (r"父亲|女儿|弟弟|哥哥|儿子|妹妹", "家庭"),
-    (r"朋友|友情|玩伴|同学", "社会"),
+    (r"朋友|建立了?友情|玩伴|同学", "社会"),
     (r"反对|抵制|抵触|当众说破", "职业/行动"),
     (r"帮助|支持下", "社会"),
     (r"组织|召开|开发", "事件"),
@@ -80,10 +81,9 @@ def coarse_scores(pred, gold, alias_map):
 
 # ---------------------------------------------------------------- spaCy
 
-def spacy_extract(sents, ent_dict, alias_map):
+def build_spacy_nlp(ent_dict):
     import spacy
     from spacy.pipeline import EntityRuler
-
     nlp = spacy.blank("zh")
     ruler = nlp.add_pipe("entity_ruler")
     patterns = []
@@ -93,17 +93,19 @@ def spacy_extract(sents, ent_dict, alias_map):
     for c in CONCEPTS:
         patterns.append({"label": "CONCEPT", "pattern": c})
     ruler.add_patterns(patterns)
+    return nlp
 
-    t0 = time.time()
-    triples = []
-    for sent, start, _ in sents:
+
+def spacy_candidates(sents, ent_dict, alias_map):
+    """用 spaCy EntityRuler 找实体，并按触发词生成候选关系对（spaCy 与 BERT 共用）。"""
+    nlp = build_spacy_nlp(ent_dict)
+    pairs = []
+    for sent, _, _ in sents:
         doc = nlp(sent)
         ents = []
         for e in doc.ents:
-            txt = e.text
-            ents.append({"text": txt, "canonical": canonical(txt, alias_map),
+            ents.append({"text": e.text, "canonical": canonical(e.text, alias_map),
                          "start": e.start_char, "end": e.end_char, "label": e.label_})
-        # 去重（EntityRuler 重叠时保留较长者）
         ents.sort(key=lambda x: (x["start"], -(x["end"] - x["start"])))
         keep = []
         for e in ents:
@@ -111,33 +113,53 @@ def spacy_extract(sents, ent_dict, alias_map):
                 continue
             keep = [k for k in keep if not (k["start"] >= e["start"] and k["end"] <= e["end"])]
             keep.append(e)
-        for i, a in enumerate(keep):
-            for b in keep[i + 1:]:
+        # 同一实体在一句中只保留一次，避免自环与重复
+        seen, uniq = set(), []
+        for e in sorted(keep, key=lambda x: -(x["end"] - x["start"])):
+            if e["canonical"] in seen:
+                continue
+            seen.add(e["canonical"])
+            uniq.append(e)
+        for i, a in enumerate(uniq):
+            for b in uniq[i + 1:]:
+                h, t = a["canonical"], b["canonical"]
+                if h == t or h == "1975年初" or t == "1975年初":
+                    continue
                 between = sent[a["end"]:b["start"]]
+                if len(between) > 34:
+                    continue
                 chosen = None
                 for pat, rel in CUES:
-                    import re
-                    if re.search(pat, between):
+                    m = re.search(pat, between)
+                    if m:
+                        # 触发词必须靠近某个端点，避免长句中的伪关系
+                        if min(m.start(), len(between) - m.end()) > 14:
+                            continue
                         chosen = rel
                         break
                 if not chosen:
                     continue
-                h, t = a["canonical"], b["canonical"]
-                # 家庭关系方向修正：后者是前者的父母/兄长时反转
-                if chosen == "家庭" and re.search(r"女儿|弟弟|妹妹", between):
+                # 帮助类关系：被帮助者在前时反转方向
+                if "帮助" in between and chosen == "社会":
                     h, t = t, h
-                if chosen == "事件" and "帮助" in between:
-                    h, t = t, h
-                triples.append({"h": h, "r": FINE_DEFAULT[chosen], "t": t,
-                                "coarse": chosen, "evidence": sent,
-                                "method": "spaCy"})
+                pairs.append({"h": h, "t": t, "between": between, "sent": sent,
+                              "rule_rel": chosen})
+    return pairs
+
+
+def spacy_extract(sents, ent_dict, alias_map):
+    t0 = time.time()
+    triples = []
+    for p in spacy_candidates(sents, ent_dict, alias_map):
+        triples.append({"h": p["h"], "r": FINE_DEFAULT[p["rule_rel"]], "t": p["t"],
+                        "coarse": p["rule_rel"], "evidence": p["sent"], "method": "spaCy"})
     return {"status": "ok", "model": "spaCy blank:zh + EntityRuler + cue rules",
             "triples": triples, "seconds": round(time.time() - t0, 2)}
 
 
 # ---------------------------------------------------------------- BERT
 
-def bert_re_extract(sents, gold_triples, alias_map, model_name="shibing624/bert4ner-base-chinese"):
+def bert_re_extract(sents, gold_triples, alias_map, pairs=None, model_name="shibing624/bert4ner-base-chinese"):
     from transformers import AutoModel, AutoTokenizer
     from sklearn.linear_model import LogisticRegression
     from sklearn.model_selection import StratifiedKFold, cross_val_predict
@@ -170,23 +192,8 @@ def bert_re_extract(sents, gold_triples, alias_map, model_name="shibing624/bert4
     report = classification_report(y, y_pred_cv, output_dict=True, zero_division=0)
     clf.fit(X, y)
 
-    # 候选对：同一句中的实体/概念两两组合
-    candidates = []
-    ent_names = set()
-    for e in load_json(DICT)["entities"]:
-        ent_names.add(e["name"])
-        ent_names.update(e.get("aliases", []))
-    ent_names.update(CONCEPTS)
-    for sent, _, _ in sents:
-        found = [n for n in ent_names if n in sent]
-        found.sort(key=len, reverse=True)
-        picked = []
-        for n in found:
-            if not any(n in p for p in picked):
-                picked.append(n)
-        for i, a in enumerate(picked):
-            for b in picked[i + 1:]:
-                candidates.append((a, b, sent))
+    # 候选对复用 spaCy 生成的实体对（BERT 只负责关系分类，保证两种方法有可比性）
+    candidates = [(p["h"], p["t"], p["sent"]) for p in (pairs or [])]
     print(f"  BERT RE candidates: {len(candidates)}")
 
     triples = []
@@ -196,7 +203,7 @@ def bert_re_extract(sents, gold_triples, alias_map, model_name="shibing624/bert4
         classes = clf.classes_
         for (a, b, sent), pr in zip(candidates, probs):
             idx = int(pr.argmax())
-            if pr[idx] < 0.42:
+            if pr[idx] < 0.45:
                 continue
             lab = classes[idx]
             triples.append({"h": a, "r": FINE_DEFAULT[lab], "t": b,
@@ -218,10 +225,12 @@ def main():
     llm = load_json(LLM_TRIPLES)["triples"]
 
     print("extracting with spaCy ...")
+    pairs = spacy_candidates(sents, ed, alias_map)
     sp = spacy_extract(sents, ed, alias_map)
+    print(f"  spaCy candidate pairs: {len(pairs)}")
     print("extracting with BERT ...")
     try:
-        bert = bert_re_extract(sents, llm, alias_map)
+        bert = bert_re_extract(sents, llm, alias_map, pairs=pairs)
         bert_err = None
     except Exception as e:
         bert_err = f"{type(e).__name__}: {str(e)[:300]}"

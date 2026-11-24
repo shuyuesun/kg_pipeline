@@ -1,0 +1,1010 @@
+{
+  "entities": [
+    {
+      "id": "E001",
+      "name": "孙少平",
+      "type": "PER",
+      "aliases": [
+        "少平"
+      ],
+      "note": "主人公，农民子弟，高中毕业回乡教书，后外出揽工、当煤矿工人"
+    },
+    {
+      "id": "E002",
+      "name": "孙少安",
+      "type": "PER",
+      "aliases": [
+        "少安"
+      ],
+      "note": "孙少平哥哥，生产队带头人，办砖窑"
+    },
+    {
+      "id": "E003",
+      "name": "田晓霞",
+      "type": "PER",
+      "aliases": [
+        "晓霞"
+      ],
+      "note": "田福军之女，省报记者，抗洪采访中牺牲"
+    },
+    {
+      "id": "E004",
+      "name": "田福军",
+      "type": "PER",
+      "aliases": [],
+      "note": "县革委副主任"
+    },
+    {
+      "id": "E005",
+      "name": "田福堂",
+      "type": "PER",
+      "aliases": [],
+      "note": "村支书，田润叶、田润生之父"
+    },
+    {
+      "id": "E006",
+      "name": "田润叶",
+      "type": "PER",
+      "aliases": [
+        "润叶"
+      ],
+      "note": "田福堂之女，县城教师，后到团地委工作"
+    },
+    {
+      "id": "E007",
+      "name": "田润生",
+      "type": "PER",
+      "aliases": [
+        "润生"
+      ],
+      "note": "田润叶之弟，与郝红梅结为夫妻"
+    },
+    {
+      "id": "E008",
+      "name": "郝红梅",
+      "type": "PER",
+      "aliases": [],
+      "note": "地主家庭出身，曾与孙少平互生情愫，后与顾养民恋爱，最终嫁田润生"
+    },
+    {
+      "id": "E009",
+      "name": "顾养民",
+      "type": "PER",
+      "aliases": [],
+      "note": "家境优越，与郝红梅恋爱"
+    },
+    {
+      "id": "E010",
+      "name": "侯玉英",
+      "type": "PER",
+      "aliases": [],
+      "note": "孙少平同班同学，发现并说破少平与红梅的情愫"
+    },
+    {
+      "id": "E011",
+      "name": "秀莲",
+      "type": "PER",
+      "aliases": [],
+      "note": "山西姑娘，孙少安之妻，确诊肺癌"
+    },
+    {
+      "id": "E012",
+      "name": "李向前",
+      "type": "PER",
+      "aliases": [],
+      "note": "田润叶之夫，酒后开车致残"
+    },
+    {
+      "id": "E013",
+      "name": "金波",
+      "type": "PER",
+      "aliases": [],
+      "note": "孙少平少时玩伴"
+    },
+    {
+      "id": "E014",
+      "name": "金波之妹",
+      "type": "PER",
+      "aliases": [],
+      "note": "向孙少平表白，被拒绝"
+    },
+    {
+      "id": "E015",
+      "name": "县长",
+      "type": "PER",
+      "aliases": [],
+      "note": "帮助孙少安度过砖窑危机的政府官员（泛指角色）"
+    },
+    {
+      "id": "E016",
+      "name": "徒弟",
+      "type": "PER",
+      "aliases": [],
+      "note": "孙少平在煤矿救护的对象（泛指角色）"
+    },
+    {
+      "id": "E017",
+      "name": "灾民",
+      "type": "PER",
+      "aliases": [],
+      "note": "抗洪采访中被抢救的群众（泛指角色）"
+    },
+    {
+      "id": "E018",
+      "name": "原西县",
+      "type": "LOC",
+      "aliases": [],
+      "note": "孙少平高中所在地"
+    },
+    {
+      "id": "E019",
+      "name": "山西",
+      "type": "LOC",
+      "aliases": [],
+      "note": "孙少安相亲之地"
+    },
+    {
+      "id": "E020",
+      "name": "县城",
+      "type": "LOC",
+      "aliases": [],
+      "note": "田润叶任教之地"
+    },
+    {
+      "id": "E021",
+      "name": "煤矿",
+      "type": "LOC",
+      "aliases": [],
+      "note": "孙少平1982年后工作地"
+    },
+    {
+      "id": "E022",
+      "name": "矿山",
+      "type": "LOC",
+      "aliases": [],
+      "note": "孙少平最终返回之地"
+    },
+    {
+      "id": "E023",
+      "name": "上游",
+      "type": "LOC",
+      "aliases": [],
+      "note": "抢水事件中的上游村落"
+    },
+    {
+      "id": "E024",
+      "name": "原西县高中",
+      "type": "ORG",
+      "aliases": [
+        "高中"
+      ],
+      "note": "孙少平1975年就读学校"
+    },
+    {
+      "id": "E025",
+      "name": "县革委",
+      "type": "ORG",
+      "aliases": [],
+      "note": "田福军任职机构"
+    },
+    {
+      "id": "E026",
+      "name": "生产队",
+      "type": "ORG",
+      "aliases": [],
+      "note": "孙少安领导的生产组织"
+    },
+    {
+      "id": "E027",
+      "name": "公社",
+      "type": "ORG",
+      "aliases": [],
+      "note": "孙少安成为“冒尖户”的行政单位"
+    },
+    {
+      "id": "E028",
+      "name": "师专",
+      "type": "ORG",
+      "aliases": [],
+      "note": "田晓霞毕业学校"
+    },
+    {
+      "id": "E029",
+      "name": "省报",
+      "type": "ORG",
+      "aliases": [],
+      "note": "田晓霞工作单位"
+    },
+    {
+      "id": "E030",
+      "name": "团地委",
+      "type": "ORG",
+      "aliases": [],
+      "note": "田润叶工作单位"
+    },
+    {
+      "id": "E031",
+      "name": "小学",
+      "type": "ORG",
+      "aliases": [],
+      "note": "孙少安出资扩建的学校"
+    },
+    {
+      "id": "E032",
+      "name": "支部会",
+      "type": "EVENT",
+      "aliases": [],
+      "note": "田福堂连夜召开的会议"
+    },
+    {
+      "id": "E033",
+      "name": "责任制",
+      "type": "EVENT",
+      "aliases": [],
+      "note": "十一届三中全会后的农村改革政策"
+    },
+    {
+      "id": "E034",
+      "name": "农业学大寨",
+      "type": "EVENT",
+      "aliases": [],
+      "note": "田福堂炸山修田的政治运动"
+    },
+    {
+      "id": "E035",
+      "name": "十一届三中全会",
+      "type": "EVENT",
+      "aliases": [],
+      "note": "1979年春后的政策背景"
+    },
+    {
+      "id": "E036",
+      "name": "旱灾",
+      "type": "EVENT",
+      "aliases": [],
+      "note": "第一部中的自然灾害"
+    },
+    {
+      "id": "E037",
+      "name": "抗洪采访",
+      "type": "EVENT",
+      "aliases": [],
+      "note": "田晓霞牺牲的新闻采访任务"
+    },
+    {
+      "id": "E038",
+      "name": "冒尖户",
+      "type": "MISC",
+      "aliases": [],
+      "note": "孙少安因烧砖致富获得的称号"
+    },
+    {
+      "id": "E039",
+      "name": "肺癌",
+      "type": "MISC",
+      "aliases": [],
+      "note": "秀莲确诊的疾病"
+    },
+    {
+      "id": "E040",
+      "name": "砖窑",
+      "type": "MISC",
+      "aliases": [],
+      "note": "孙少安创办并扩建的制砖产业"
+    },
+    {
+      "id": "E041",
+      "name": "1975年初",
+      "type": "TIME",
+      "aliases": [],
+      "note": "第一部开始时间"
+    },
+    {
+      "id": "E042",
+      "name": "1979年春",
+      "type": "TIME",
+      "aliases": [],
+      "note": "第二部开始时间"
+    },
+    {
+      "id": "E043",
+      "name": "1982年",
+      "type": "TIME",
+      "aliases": [],
+      "note": "第三部开始时间"
+    }
+  ],
+  "mentions": [
+    {
+      "start": 5,
+      "end": 11,
+      "text": "1975年初",
+      "canonical": "1975年初",
+      "type": "TIME",
+      "id": "E041"
+    },
+    {
+      "start": 15,
+      "end": 18,
+      "text": "孙少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 19,
+      "end": 24,
+      "text": "原西县高中",
+      "canonical": "原西县高中",
+      "type": "ORG",
+      "id": "E024"
+    },
+    {
+      "start": 48,
+      "end": 51,
+      "text": "郝红梅",
+      "canonical": "郝红梅",
+      "type": "PER",
+      "id": "E008"
+    },
+    {
+      "start": 62,
+      "end": 65,
+      "text": "侯玉英",
+      "canonical": "侯玉英",
+      "type": "PER",
+      "id": "E010"
+    },
+    {
+      "start": 75,
+      "end": 78,
+      "text": "郝红梅",
+      "canonical": "郝红梅",
+      "type": "PER",
+      "id": "E008"
+    },
+    {
+      "start": 87,
+      "end": 90,
+      "text": "郝红梅",
+      "canonical": "郝红梅",
+      "type": "PER",
+      "id": "E008"
+    },
+    {
+      "start": 97,
+      "end": 100,
+      "text": "顾养民",
+      "canonical": "顾养民",
+      "type": "PER",
+      "id": "E009"
+    },
+    {
+      "start": 103,
+      "end": 105,
+      "text": "少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 105,
+      "end": 107,
+      "text": "高中",
+      "canonical": "原西县高中",
+      "type": "ORG",
+      "id": "E024"
+    },
+    {
+      "start": 131,
+      "end": 134,
+      "text": "县革委",
+      "canonical": "县革委",
+      "type": "ORG",
+      "id": "E025"
+    },
+    {
+      "start": 137,
+      "end": 140,
+      "text": "田福军",
+      "canonical": "田福军",
+      "type": "PER",
+      "id": "E004"
+    },
+    {
+      "start": 142,
+      "end": 145,
+      "text": "田晓霞",
+      "canonical": "田晓霞",
+      "type": "PER",
+      "id": "E003"
+    },
+    {
+      "start": 152,
+      "end": 154,
+      "text": "晓霞",
+      "canonical": "田晓霞",
+      "type": "PER",
+      "id": "E003"
+    },
+    {
+      "start": 166,
+      "end": 168,
+      "text": "少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 171,
+      "end": 173,
+      "text": "少安",
+      "canonical": "孙少安",
+      "type": "PER",
+      "id": "E002"
+    },
+    {
+      "start": 184,
+      "end": 187,
+      "text": "田福堂",
+      "canonical": "田福堂",
+      "type": "PER",
+      "id": "E005"
+    },
+    {
+      "start": 192,
+      "end": 194,
+      "text": "县城",
+      "canonical": "县城",
+      "type": "LOC",
+      "id": "E020"
+    },
+    {
+      "start": 196,
+      "end": 199,
+      "text": "田润叶",
+      "canonical": "田润叶",
+      "type": "PER",
+      "id": "E006"
+    },
+    {
+      "start": 204,
+      "end": 206,
+      "text": "少安",
+      "canonical": "孙少安",
+      "type": "PER",
+      "id": "E002"
+    },
+    {
+      "start": 207,
+      "end": 209,
+      "text": "润叶",
+      "canonical": "田润叶",
+      "type": "PER",
+      "id": "E006"
+    },
+    {
+      "start": 219,
+      "end": 222,
+      "text": "田福堂",
+      "canonical": "田福堂",
+      "type": "PER",
+      "id": "E005"
+    },
+    {
+      "start": 233,
+      "end": 235,
+      "text": "少安",
+      "canonical": "孙少安",
+      "type": "PER",
+      "id": "E002"
+    },
+    {
+      "start": 236,
+      "end": 238,
+      "text": "山西",
+      "canonical": "山西",
+      "type": "LOC",
+      "id": "E019"
+    },
+    {
+      "start": 244,
+      "end": 246,
+      "text": "秀莲",
+      "canonical": "秀莲",
+      "type": "PER",
+      "id": "E011"
+    },
+    {
+      "start": 253,
+      "end": 255,
+      "text": "润叶",
+      "canonical": "田润叶",
+      "type": "PER",
+      "id": "E006"
+    },
+    {
+      "start": 276,
+      "end": 279,
+      "text": "李向前",
+      "canonical": "李向前",
+      "type": "PER",
+      "id": "E012"
+    },
+    {
+      "start": 295,
+      "end": 297,
+      "text": "旱灾",
+      "canonical": "旱灾",
+      "type": "EVENT",
+      "id": "E036"
+    },
+    {
+      "start": 298,
+      "end": 301,
+      "text": "田福堂",
+      "canonical": "田福堂",
+      "type": "PER",
+      "id": "E005"
+    },
+    {
+      "start": 318,
+      "end": 320,
+      "text": "上游",
+      "canonical": "上游",
+      "type": "LOC",
+      "id": "E023"
+    },
+    {
+      "start": 334,
+      "end": 339,
+      "text": "农业学大寨",
+      "canonical": "农业学大寨",
+      "type": "EVENT",
+      "id": "E034"
+    },
+    {
+      "start": 388,
+      "end": 394,
+      "text": "1979年春",
+      "canonical": "1979年春",
+      "type": "TIME",
+      "id": "E042"
+    },
+    {
+      "start": 395,
+      "end": 402,
+      "text": "十一届三中全会",
+      "canonical": "十一届三中全会",
+      "type": "EVENT",
+      "id": "E035"
+    },
+    {
+      "start": 413,
+      "end": 416,
+      "text": "田福堂",
+      "canonical": "田福堂",
+      "type": "PER",
+      "id": "E005"
+    },
+    {
+      "start": 420,
+      "end": 423,
+      "text": "支部会",
+      "canonical": "支部会",
+      "type": "EVENT",
+      "id": "E032"
+    },
+    {
+      "start": 425,
+      "end": 428,
+      "text": "责任制",
+      "canonical": "责任制",
+      "type": "EVENT",
+      "id": "E033"
+    },
+    {
+      "start": 429,
+      "end": 432,
+      "text": "孙少安",
+      "canonical": "孙少安",
+      "type": "PER",
+      "id": "E002"
+    },
+    {
+      "start": 435,
+      "end": 438,
+      "text": "生产队",
+      "canonical": "生产队",
+      "type": "ORG",
+      "id": "E026"
+    },
+    {
+      "start": 453,
+      "end": 456,
+      "text": "责任制",
+      "canonical": "责任制",
+      "type": "EVENT",
+      "id": "E033"
+    },
+    {
+      "start": 462,
+      "end": 464,
+      "text": "少安",
+      "canonical": "孙少安",
+      "type": "PER",
+      "id": "E002"
+    },
+    {
+      "start": 489,
+      "end": 491,
+      "text": "公社",
+      "canonical": "公社",
+      "type": "ORG",
+      "id": "E027"
+    },
+    {
+      "start": 493,
+      "end": 496,
+      "text": "冒尖户",
+      "canonical": "冒尖户",
+      "type": "MISC",
+      "id": "E038"
+    },
+    {
+      "start": 498,
+      "end": 500,
+      "text": "少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 549,
+      "end": 551,
+      "text": "煤矿",
+      "canonical": "煤矿",
+      "type": "LOC",
+      "id": "E021"
+    },
+    {
+      "start": 562,
+      "end": 564,
+      "text": "晓霞",
+      "canonical": "田晓霞",
+      "type": "PER",
+      "id": "E003"
+    },
+    {
+      "start": 565,
+      "end": 567,
+      "text": "师专",
+      "canonical": "师专",
+      "type": "ORG",
+      "id": "E028"
+    },
+    {
+      "start": 571,
+      "end": 573,
+      "text": "省报",
+      "canonical": "省报",
+      "type": "ORG",
+      "id": "E029"
+    },
+    {
+      "start": 589,
+      "end": 591,
+      "text": "润叶",
+      "canonical": "田润叶",
+      "type": "PER",
+      "id": "E006"
+    },
+    {
+      "start": 600,
+      "end": 603,
+      "text": "团地委",
+      "canonical": "团地委",
+      "type": "ORG",
+      "id": "E030"
+    },
+    {
+      "start": 622,
+      "end": 624,
+      "text": "润叶",
+      "canonical": "田润叶",
+      "type": "PER",
+      "id": "E006"
+    },
+    {
+      "start": 646,
+      "end": 648,
+      "text": "润生",
+      "canonical": "田润生",
+      "type": "PER",
+      "id": "E007"
+    },
+    {
+      "start": 665,
+      "end": 668,
+      "text": "郝红梅",
+      "canonical": "郝红梅",
+      "type": "PER",
+      "id": "E008"
+    },
+    {
+      "start": 691,
+      "end": 694,
+      "text": "田福堂",
+      "canonical": "田福堂",
+      "type": "PER",
+      "id": "E005"
+    },
+    {
+      "start": 743,
+      "end": 748,
+      "text": "1982年",
+      "canonical": "1982年",
+      "type": "TIME",
+      "id": "E043"
+    },
+    {
+      "start": 748,
+      "end": 751,
+      "text": "孙少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 753,
+      "end": 755,
+      "text": "煤矿",
+      "canonical": "煤矿",
+      "type": "LOC",
+      "id": "E021"
+    },
+    {
+      "start": 780,
+      "end": 783,
+      "text": "孙少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 784,
+      "end": 787,
+      "text": "田晓霞",
+      "canonical": "田晓霞",
+      "type": "PER",
+      "id": "E003"
+    },
+    {
+      "start": 797,
+      "end": 800,
+      "text": "田晓霞",
+      "canonical": "田晓霞",
+      "type": "PER",
+      "id": "E003"
+    },
+    {
+      "start": 803,
+      "end": 807,
+      "text": "抗洪采访",
+      "canonical": "抗洪采访",
+      "type": "EVENT",
+      "id": "E037"
+    },
+    {
+      "start": 811,
+      "end": 813,
+      "text": "灾民",
+      "canonical": "灾民",
+      "type": "PER",
+      "id": "E017"
+    },
+    {
+      "start": 821,
+      "end": 824,
+      "text": "田福军",
+      "canonical": "田福军",
+      "type": "PER",
+      "id": "E004"
+    },
+    {
+      "start": 825,
+      "end": 828,
+      "text": "孙少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 834,
+      "end": 836,
+      "text": "少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 841,
+      "end": 843,
+      "text": "少安",
+      "canonical": "孙少安",
+      "type": "PER",
+      "id": "E002"
+    },
+    {
+      "start": 844,
+      "end": 846,
+      "text": "砖窑",
+      "canonical": "砖窑",
+      "type": "MISC",
+      "id": "E040"
+    },
+    {
+      "start": 878,
+      "end": 880,
+      "text": "砖窑",
+      "canonical": "砖窑",
+      "type": "MISC",
+      "id": "E040"
+    },
+    {
+      "start": 893,
+      "end": 895,
+      "text": "县长",
+      "canonical": "县长",
+      "type": "PER",
+      "id": "E015"
+    },
+    {
+      "start": 933,
+      "end": 935,
+      "text": "少安",
+      "canonical": "孙少安",
+      "type": "PER",
+      "id": "E002"
+    },
+    {
+      "start": 938,
+      "end": 940,
+      "text": "秀莲",
+      "canonical": "秀莲",
+      "type": "PER",
+      "id": "E011"
+    },
+    {
+      "start": 957,
+      "end": 959,
+      "text": "小学",
+      "canonical": "小学",
+      "type": "ORG",
+      "id": "E031"
+    },
+    {
+      "start": 968,
+      "end": 970,
+      "text": "肺癌",
+      "canonical": "肺癌",
+      "type": "MISC",
+      "id": "E039"
+    },
+    {
+      "start": 971,
+      "end": 973,
+      "text": "润叶",
+      "canonical": "田润叶",
+      "type": "PER",
+      "id": "E006"
+    },
+    {
+      "start": 985,
+      "end": 987,
+      "text": "润生",
+      "canonical": "田润生",
+      "type": "PER",
+      "id": "E007"
+    },
+    {
+      "start": 988,
+      "end": 991,
+      "text": "郝红梅",
+      "canonical": "郝红梅",
+      "type": "PER",
+      "id": "E008"
+    },
+    {
+      "start": 1019,
+      "end": 1021,
+      "text": "少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 1030,
+      "end": 1032,
+      "text": "徒弟",
+      "canonical": "徒弟",
+      "type": "PER",
+      "id": "E016"
+    },
+    {
+      "start": 1051,
+      "end": 1055,
+      "text": "金波之妹",
+      "canonical": "金波之妹",
+      "type": "PER",
+      "id": "E014"
+    },
+    {
+      "start": 1058,
+      "end": 1060,
+      "text": "少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 1087,
+      "end": 1089,
+      "text": "少平",
+      "canonical": "孙少平",
+      "type": "PER",
+      "id": "E001"
+    },
+    {
+      "start": 1110,
+      "end": 1112,
+      "text": "矿山",
+      "canonical": "矿山",
+      "type": "LOC",
+      "id": "E022"
+    }
+  ],
+  "counts": {
+    "E041": 1,
+    "E001": 11,
+    "E024": 2,
+    "E008": 5,
+    "E010": 1,
+    "E009": 1,
+    "E025": 1,
+    "E004": 2,
+    "E003": 5,
+    "E002": 7,
+    "E005": 5,
+    "E020": 1,
+    "E006": 6,
+    "E019": 1,
+    "E011": 2,
+    "E012": 1,
+    "E036": 1,
+    "E023": 1,
+    "E034": 1,
+    "E042": 1,
+    "E035": 1,
+    "E032": 1,
+    "E033": 2,
+    "E026": 1,
+    "E027": 1,
+    "E038": 1,
+    "E021": 2,
+    "E028": 1,
+    "E029": 1,
+    "E030": 1,
+    "E007": 2,
+    "E043": 1,
+    "E037": 1,
+    "E017": 1,
+    "E040": 2,
+    "E015": 1,
+    "E031": 1,
+    "E039": 1,
+    "E016": 1,
+    "E014": 1,
+    "E022": 1
+  }
+}
